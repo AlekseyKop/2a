@@ -12,7 +12,7 @@ namespace MoneyBackTrack
     public partial class Form1 : Form
     {
         int[] CostCoin = new int[7] { 1, 5, 10, 50, 100, 200, 500 };
-        List<string> Coins = new List<string>();
+        List<int> Coins = new List<int>();
 
         public Form1()
         {
@@ -31,33 +31,66 @@ namespace MoneyBackTrack
 
         private void AddCoinsInList()
         {
-            Coins.Add(textBox1.Text);
-            Coins.Add(textBox2.Text);
-            Coins.Add(textBox3.Text);
-            Coins.Add(textBox4.Text);
-            Coins.Add(textBox5.Text);
-            Coins.Add(textBox6.Text);
-            Coins.Add(textBox7.Text);
+            Coins.Add(int.Parse(textBox1.Text));
+            Coins.Add(int.Parse(textBox2.Text));
+            Coins.Add(int.Parse(textBox3.Text));
+            Coins.Add(int.Parse(textBox4.Text));
+            Coins.Add(int.Parse(textBox5.Text));
+            Coins.Add(int.Parse(textBox6.Text));
+            Coins.Add(int.Parse(textBox7.Text));
         }
 
         private void butRun_Click(object sender, EventArgs e)
         {
+            int SumCassa()
+            {
+                int result = 0;
+                for (int i = 0; i < 7; i++)
+                {
+                    result = result + CostCoin[i] * Coins[i];
+                }
+                return result;
+            }
+            int SumSdacha()
+            {
+                int result = 100 * (int.Parse(textdano.Text)) + (int.Parse(textdano2.Text));
+                return result;
 
+            }
+            int Recursus(int sum, int ind)
+            {
+                int result;
+                int tmp = 0;
+                if ((sum < 0) || (ind >= 7))
+                {
+                    if (sum == 0)
+                        tmp = 1;
+                }
+                else
+                {
+                    if (Coins[ind] == 0)
+                        tmp = Recursus(sum, ind + 1);
+                    else
+                        for (int i = 0; i <= Coins[ind]; i++)
+                        {
+                            tmp = tmp + Recursus(sum - CostCoin[ind] * i, ind + 1);
+                        }
+                }
+                return result = tmp;
+            }
             SetInterfaceState(false);
+            Coins.Clear();
             AddCoinsInList();
 
-            if ((int.TryParse(textdano.Text, out int result1)) && (int.TryParse(textdano.Text, out int result2)))
+            if ((int.TryParse(textdano.Text, out int result1)) && (int.TryParse(textdano2.Text, out int result2)))
             {
-                string[] temp = textdano.Text.Split('.', ',');
                 if ((((result1 >= 0) && (result1 <= 9)) && ((result2 >= 0) && (result2 <= 99))) || ((result1 == 10) && (result2 == 0)))
                 {
-                    /*  
-                     *  if (SumMonet>=Summa)                   *  
-                     *      MessageBox.Show("К-во вариантов: '+int.Parse(Recursus(Summa,1))",
-                     *       "Ответ", MessageBoxButtons.OK, MessageBoxIcon.None);                        
-                     *  else  MessageBox.Show("Сумма монет меньше суммы денег!",
-                     *      "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    */
+                    if ((SumCassa()) >= (SumSdacha()))
+                        textvars.Text = Convert.ToString(Recursus(SumSdacha(), 0));
+                    else MessageBox.Show("Сумма монет меньше суммы денег!",
+                       "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
                 else MessageBox.Show("Число не соответствует диапазону(формату)! \n" + "Необходимо ввести число от 0 до 10. \n" +
                 "Если есть копейки писать их через запятую.",
