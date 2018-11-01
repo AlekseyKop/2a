@@ -11,14 +11,15 @@ namespace MoneyBackTrack
 {
     public partial class Form1 : Form
     {
+        int[] CostCoin = new int[7] { 1, 5, 10, 50, 100, 200, 500 };
+        List<string> Coins = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
-
-            
         }
 
-    
+
 
         private void butUslovie_Click(object sender, EventArgs e)
         {
@@ -28,17 +29,35 @@ namespace MoneyBackTrack
                "Условие", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void AddCoinsInList()
+        {
+            Coins.Add(textBox1.Text);
+            Coins.Add(textBox2.Text);
+            Coins.Add(textBox3.Text);
+            Coins.Add(textBox4.Text);
+            Coins.Add(textBox5.Text);
+            Coins.Add(textBox6.Text);
+            Coins.Add(textBox7.Text);
+        }
 
         private void butRun_Click(object sender, EventArgs e)
         {
+
             SetInterfaceState(false);
+            AddCoinsInList();
+
             if ((int.TryParse(textdano.Text, out int result1)) && (int.TryParse(textdano.Text, out int result2)))
             {
                 string[] temp = textdano.Text.Split('.', ',');
-                if ((((result1>=0)&&(result1<=9)) && ((result2 >= 0) && (result2 <= 99))) || ((result1 == 10) && (result2 == 0)))
+                if ((((result1 >= 0) && (result1 <= 9)) && ((result2 >= 0) && (result2 <= 99))) || ((result1 == 10) && (result2 == 0)))
                 {
-                    //
-                    //Recursus(a,b);
+                    /*  
+                     *  if (SumMonet>=Summa)                   *  
+                     *      MessageBox.Show("К-во вариантов: '+int.Parse(Recursus(Summa,1))",
+                     *       "Ответ", MessageBoxButtons.OK, MessageBoxIcon.None);                        
+                     *  else  MessageBox.Show("Сумма монет меньше суммы денег!",
+                     *      "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    */
                 }
                 else MessageBox.Show("Число не соответствует диапазону(формату)! \n" + "Необходимо ввести число от 0 до 10. \n" +
                 "Если есть копейки писать их через запятую.",
@@ -107,7 +126,7 @@ namespace MoneyBackTrack
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text =but_lkm(textBox1.Text); 
+            textBox1.Text = but_lkm(textBox1.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -152,6 +171,7 @@ namespace MoneyBackTrack
             textBox5.Text = "0";
             textBox6.Text = "0";
             textBox7.Text = "0";
+            Coins.Clear();
         }
     }
 }
