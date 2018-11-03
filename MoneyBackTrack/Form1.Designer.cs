@@ -52,6 +52,9 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.butClear = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Variants = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // textdano
@@ -89,9 +92,9 @@
             // 
             // butRun
             // 
-            this.butRun.Location = new System.Drawing.Point(472, 12);
+            this.butRun.Location = new System.Drawing.Point(432, 12);
             this.butRun.Name = "butRun";
-            this.butRun.Size = new System.Drawing.Size(256, 214);
+            this.butRun.Size = new System.Drawing.Size(430, 404);
             this.butRun.TabIndex = 4;
             this.butRun.Text = "Посчитать";
             this.butRun.UseVisualStyleBackColor = true;
@@ -296,11 +299,31 @@
             this.butClear.UseVisualStyleBackColor = true;
             this.butClear.Click += new System.EventHandler(this.butClear_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Variants});
+            this.dataGridView1.Location = new System.Drawing.Point(5, 217);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 90;
+            this.dataGridView1.Size = new System.Drawing.Size(421, 199);
+            this.dataGridView1.TabIndex = 24;
+            // 
+            // Variants
+            // 
+            this.Variants.HeaderText = "Варианты сдачи";
+            this.Variants.Name = "Variants";
+            this.Variants.Width = 418;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 238);
+            this.ClientSize = new System.Drawing.Size(874, 428);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.butClear);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
@@ -328,6 +351,7 @@
             this.Name = "Form1";
             this.Text = "Кассовый Аппарат ";
             this.Load += new System.EventHandler(this.Form1_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,6 +383,8 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Button butClear;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Variants;
     }
 }
 

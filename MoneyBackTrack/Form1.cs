@@ -13,6 +13,7 @@ namespace MoneyBackTrack
     {
         int[] CostCoin = new int[7] { 1, 5, 10, 50, 100, 200, 500 };
         List<int> Coins = new List<int>();
+        List<int> numbers = new List<int>() { 0, 0, 0, 0, 0, 0, 0 };
 
         public Form1()
         {
@@ -28,7 +29,7 @@ namespace MoneyBackTrack
                 "Набор монет задается пользователем.",
                "Условие", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        //заполнение таблицы
         private void AddCoinsInList()
         {
             Coins.Add(int.Parse(textBox1.Text));
@@ -39,9 +40,23 @@ namespace MoneyBackTrack
             Coins.Add(int.Parse(textBox6.Text));
             Coins.Add(int.Parse(textBox7.Text));
         }
-
+        //задание
         private void butRun_Click(object sender, EventArgs e)
         {
+            void PrintVariant()
+            {
+                string result = "";
+                for (int i = 0; i < 7; i++)
+                {
+                    if ((result == "") && (numbers[i] != 0))
+                        result += Convert.ToString(numbers[i]) + " X " + Convert.ToString(CostCoin[i]);
+                    else
+                    if ((result != "") && (numbers[i] != 0))
+                        result += " + " + Convert.ToString(numbers[i]) + " X " + Convert.ToString(CostCoin[i]);
+                }
+                dataGridView1.Rows.Add(result);
+            }
+            //общая сумма денег в кассе в копейках
             int SumCassa()
             {
                 int result = 0;
@@ -51,12 +66,14 @@ namespace MoneyBackTrack
                 }
                 return result;
             }
+            //общая сумма сдачи в копейках
             int SumSdacha()
             {
                 int result = 100 * (int.Parse(textdano.Text)) + (int.Parse(textdano2.Text));
                 return result;
 
             }
+            //подсчёт кол-ва способов для выдачи сдачи
             int Recursus(int sum, int ind)
             {
                 int result;
@@ -64,7 +81,16 @@ namespace MoneyBackTrack
                 if ((sum < 0) || (ind >= 7))
                 {
                     if (sum == 0)
+                    {
+                        PrintVariant();
+                        for (int i = 0; i < 7; i++)
+                        {
+                            numbers[i] = 0;
+                        }
+
                         tmp = 1;
+                    }
+
                 }
                 else
                 {
@@ -73,15 +99,20 @@ namespace MoneyBackTrack
                     else
                         for (int i = 0; i <= Coins[ind]; i++)
                         {
-                            tmp = tmp + Recursus(sum - CostCoin[ind] * i, ind + 1);
+
+                            int newsum = sum - CostCoin[ind] * i;
+                            if ((newsum >= 0) && (newsum < sum))
+                                numbers[ind]++;
+                            tmp = tmp + Recursus(newsum, ind + 1);
                         }
                 }
                 return result = tmp;
             }
+
             SetInterfaceState(false);
             Coins.Clear();
             AddCoinsInList();
-
+            //проверка ввода
             if ((int.TryParse(textdano.Text, out int result1)) && (int.TryParse(textdano2.Text, out int result2)))
             {
                 if ((((result1 >= 0) && (result1 <= 9)) && ((result2 >= 0) && (result2 <= 99))) || ((result1 == 10) && (result2 == 0)))
@@ -99,17 +130,25 @@ namespace MoneyBackTrack
             else MessageBox.Show("Это не число! \n" + "Необходимо ввести число от 0 до 10. \n" +
                "Если есть копейки писать их через запятую",
               "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            for (int i = 0; i < 7; i++)
+            {
+                numbers[i] = 0;
+            }
             SetInterfaceState(true);
 
         }
+        // блокировка/разблокировка кнопок
         private void SetInterfaceState(bool state)
         {
             butRun.Enabled = state;
             butUslovie.Enabled = state;
+            butClear.Enabled = state;
         }
-
+        // из прямоугольников в круглые кнопки
         private void Form1_Load_1(object sender, EventArgs e)
         {
+            dataGridView1.ColumnCount = 1;
+            dataGridView1.RowCount = 1;
             System.Drawing.Drawing2D.GraphicsPath myPath1 = new System.Drawing.Drawing2D.GraphicsPath();
             myPath1.AddEllipse(0, 0, button1.Width, button1.Height);
             Region myRegion1 = new Region(myPath1);
@@ -152,6 +191,7 @@ namespace MoneyBackTrack
             textBox6.Text = "0";
             textBox7.Text = "0";
         }
+        //добавление монет в кассовый аппарат
         private string but_lkm(string tb)
         {
             tb = Convert.ToString(int.Parse(tb) + 1);
@@ -191,7 +231,7 @@ namespace MoneyBackTrack
         {
             textBox7.Text = but_lkm(textBox7.Text);
         }
-
+        //очистка
         private void butClear_Click(object sender, EventArgs e)
         {
             textdano.Text = "";
@@ -205,6 +245,7 @@ namespace MoneyBackTrack
             textBox6.Text = "0";
             textBox7.Text = "0";
             Coins.Clear();
+            dataGridView1.Rows.Clear();
         }
     }
 }
