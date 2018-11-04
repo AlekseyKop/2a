@@ -109,6 +109,7 @@ namespace MoneyBackTrack
                 return result = tmp;
             }
 
+
             SetInterfaceState(false);
             Coins.Clear();
             AddCoinsInList();
@@ -118,7 +119,13 @@ namespace MoneyBackTrack
                 if ((((result1 >= 0) && (result1 <= 9)) && ((result2 >= 0) && (result2 <= 99))) || ((result1 == 10) && (result2 == 0)))
                 {
                     if ((SumCassa()) >= (SumSdacha()))
-                        textvars.Text = Convert.ToString(Recursus(SumSdacha(), 0));
+                    {
+                        textvars.Text = Convert.ToString(Recursus(SumSdacha(), 0));                    
+                        for (int i = 0; i < 7; i++)
+                        {
+                            numbers[i] = 0;
+                        }
+                    }
                     else MessageBox.Show("Сумма монет меньше суммы денег!",
                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -130,10 +137,6 @@ namespace MoneyBackTrack
             else MessageBox.Show("Это не число! \n" + "Необходимо ввести число от 0 до 10. \n" +
                "Если есть копейки писать их через запятую",
               "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            for (int i = 0; i < 7; i++)
-            {
-                numbers[i] = 0;
-            }
             SetInterfaceState(true);
 
         }

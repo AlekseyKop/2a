@@ -1,0 +1,9 @@
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\bin\Debug\MoneyBackTrack.exe
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\bin\Debug\MoneyBackTrack.pdb
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\obj\Debug\MoneyBackTrack.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\obj\Debug\MoneyBackTrack.Form1.resources
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\obj\Debug\MoneyBackTrack.Properties.Resources.resources
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\obj\Debug\MoneyBackTrack.csproj.GenerateResource.Cache
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\obj\Debug\MoneyBackTrack.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\obj\Debug\MoneyBackTrack.exe
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\MoneyBackTrack\MoneyBackTrack\obj\Debug\MoneyBackTrack.pdb
